@@ -230,6 +230,7 @@ def run_model(saved_df):
 	topics_df = pd.DataFrame()
 	for i in range(number_of_topics):
     	topics_df[i] = topics[i][1].split('+')
+
     topics_df.to_csv('LDA_topics.csv', index=False)
 
 	# Retrieve vectors for the original tfidf corpus in the LSI space ("transform" in sklearn).
@@ -250,6 +251,6 @@ def run_model(saved_df):
 	# Save dataframe with users and their top topics
 	users_df.to_csv('users_df.csv',index=False)
 
-run_model()
+run_model('all_comments.csv')
 
 
