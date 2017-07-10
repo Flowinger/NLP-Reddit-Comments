@@ -40,7 +40,8 @@ from sklearn.naive_bayes import MultinomialNB, GaussianNB
 import pyLDAvis.gensim
 
 def load_dataframe(filepath):
-	''' Function to load csv file
+	''' 
+	Function to load csv file
 	INPUT: csv file which was saved from mongodb.py
 	OUTPUT: Dataframe with all comments sorted by user
 	'''
@@ -53,7 +54,8 @@ def load_dataframe(filepath):
 	return df
 
 def lemmatize(sentence):
-	''' Function to lemmatize a sentence
+	''' 
+	Function to lemmatize a sentence
 	INPUT: Sentence
 	OUTPUT: Lemmatized sentence
 	'''
@@ -64,7 +66,8 @@ def lemmatize(sentence):
     return " ".join(lemmed)
 
 def translate_slang(sentence):
-	''' Developable function to translate slang
+	''' 
+	Developable function to translate slang
 	INPUT: Sentence
 	OUTPUT: Sentence without slang
 	'''
@@ -81,7 +84,8 @@ def translate_slang(sentence):
     return " ".join(std)
 
 def sentiment(sentence):
-	''' Function to analyze the sentiment of a sentence
+	''' 
+	Function to analyze the sentiment of a sentence
 	INPUT: Sentence
 	OUTPUT: Sentiments of each word in the sentence
 	'''
@@ -106,7 +110,8 @@ def sentiment(sentence):
     return sent
 
 def clean_text(X):
-	''' Function to clean column with comments in the dataframe
+	''' 
+	Function to clean column with comments in the dataframe
 	INPUT: Dataframe -> author, controversiality, score, text
 	OUTPUT: Cleaned dataframe
 	'''
@@ -137,7 +142,8 @@ def clean_text(X):
     return X
 
 def CountVec(text_column):
-	''' Function to create a count vectorizer dataframe
+	''' 
+	Function to create a count vectorizer dataframe
 	INPUT: Text column of dataframe (df_clean.text) 
 	PARAMETERS: word appears in at least six documents, word appears in less than 50% of documents,
 	only words with at least three letters
@@ -150,7 +156,8 @@ def CountVec(text_column):
 	return cv, cv_vecs
 
 def TfidfVec(text_column):
-	''' Function to create a TFIDF vectorizer dataframe, head output: yes/no
+	''' 
+	Function to create a TFIDF vectorizer dataframe, head output: yes/no
 	INPUT: Text column of dataframe
 	PARAMETERS: word appears in at least six documents, word appears in less than 50% of documents,
 	only words with at least three letters
@@ -164,9 +171,10 @@ def TfidfVec(text_column):
 	return trans_vecs_dense
 
 def gensim_corpus(vectorizer, vectorizer_df):
-	''' Export TFIDF vectors to gensim and let it know the mapping of row index to term:
-	- Convert sparse matrix of counts to a gensim corpus
-	- Transpose it for gensim -> needs to be terms by docs instead of docs by terms
+	''' 
+	Export TFIDF vectors to gensim and let it know the mapping of row index to term:
+		- Convert sparse matrix of counts to a gensim corpus
+		- Transpose it for gensim -> needs to be terms by docs instead of docs by terms
 	INPUT: Vectorizer, Vectorizer dataframe
 	OUTPUT: Dictionary with id mapped to word, Corpus
 	'''
@@ -180,9 +188,10 @@ def gensim_corpus(vectorizer, vectorizer_df):
 	return id2word, tfidf_corpus
 
 def LSI_space(mapped_dictionary, corpus, number_of_topics, words_per_topic):
-	''' Build an LSI space from the input vectorizer matrix, mapping of row id to word, and num_topics.
-	- num_topics is the number of dimensions to reduce to after the SVD.
-	- "fit" in sklearn, it primes an LSI space.
+	''' 
+	Build an LSI space from the input vectorizer matrix, mapping of row id to word, and num_topics.
+		- num_topics is the number of dimensions to reduce to after the SVD.
+		- "fit" in sklearn, it primes an LSI space.
 	INPUT: Id to word dictionary, gensim corpus, number of topics, words per topic
 	OUTPUT: Topics
 	'''
@@ -194,9 +203,8 @@ def LSI_space(mapped_dictionary, corpus, number_of_topics, words_per_topic):
 
 
 def LDA(mapped_dictionary, corpus, number_of_topics, words_per_topic):
-	''' Build an LSI space from the input vectorizer matrix, mapping of row id to word, and num_topics.
-	- num_topics is the number of dimensions to reduce to after the SVD.
-	- "fit" in sklearn, it primes an LSI space.
+	''' 
+	Build a Latent Dirichlet Allocation (LDA) model
 	INPUT: Id to word dictionary, gensim corpus, number of topics, words per topic
 	OUTPUT: Topics
 	'''
