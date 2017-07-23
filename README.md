@@ -5,6 +5,8 @@ Some of the major topics that were found are:
 - Politics, War, Programming, Internet, Religion  
 - Election / voting, Life/Family, Globalism, Economy, Science  
 
+![LDA](images/LDA.png)
+
 After looking at every user's main topics I created a web application with which you can find out new suggestions for connections and topics for an individual user.  
 
 Short summary:  
